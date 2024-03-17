@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<title>Регистрация</title>
+<style>
+    body {
+        background-color: white;
+    }
+    .form-wrapper {
+        border: 2px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        opacity: 0.6;
+    }
+    .registration-title {
+        font-weight: bold;
+    }
+
+
+</style>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <h2 class="text-center registration-title">Регистрация</h2>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 form-wrapper">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Имя пользователя</label>
+                <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp">
+                <small id="usernameHelp" class="form-text text-muted">Ваше имя пользователя должно быть уникальным. Мы сообщим вам, если кто-то уже воспользовался им.</small>
+            </div>
+            <div class="form-group">
+                <label for="password1">Пароль</label>
+                <input type="password" name="password1" class="form-control" id="password1">
+            </div>
+            <div class="form-group">
+                <label for="password2">Подтверждение пароля</label>
+                <input type="password" name="password2" class="form-control" id="password2">
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-5 text-center">
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div class="text-center">
+            Уже есть аккаунт? <a href="{% url 'login_user' %}">Войти в аккаунт</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

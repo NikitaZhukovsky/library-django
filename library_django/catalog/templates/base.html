@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% block title %}<title>Local Library</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-2">
+      <header>
+    <nav>
+        <ul class="header-nav">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'authors' %}">Authors</a></li>
+        <li><a href="{% url 'books' %}">Books</a></li>
+        <li><a href="{% url 'owned_books' %}">Reserved</a></li>
+    </ul>
+  </nav>
+          <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'login_user' %}" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
+                    <form style='display: none;' method="POST" action="{% url 'logout_user' %}">
+                        {% csrf_token %}
+                        <button id="signOutBtn" type="submit">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup_user' %}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login_user' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+</header>
+      </div>
+<style>
+
+.header-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.header-nav li {
+    margin-left: 10px;
+}
+
+.header-nav li:first-child {
+    margin-left: 0;
+}
+
+.header-nav li a {
+    text-decoration: none;
+    color: #333;
+}
+</style>
+
+      <div class="col-sm-10 ">
+      {% block content %}{% endblock %}
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
