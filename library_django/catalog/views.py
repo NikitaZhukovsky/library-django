@@ -60,6 +60,11 @@ def owned_books(request):
 
 @login_required
 def reserve_book(request, book_instance_id):
+    has_overdue_books = BookInstance.objects.filter(borrower=request.user, status='On Loan',
+                                                    due_back__lt=timezone.now().date()).exists()
+    if has_overdue_books:
+        return render(request, 'reserved_detail.html',
+                      {'message': 'You have expired books. It is not possible to book a new book.'})
     book_instance = get_object_or_404(BookInstance, id=book_instance_id)
     book_instance.status = 'On Loan'
     book_instance.due_back = timezone.now().date() + timedelta(weeks=2)

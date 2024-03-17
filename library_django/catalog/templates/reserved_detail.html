@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>Books Owned by {{ user.username }}</h1>
-
+{{ message }}
   {% if book_instance %}
     <ul>
       {% for book in book_instance %}
