@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<title>Регистрация</title>
+<title>Sign Up</title>
 <style>
     body {
         background-color: white;
@@ -28,7 +28,7 @@
 </style>
 <div class="row justify-content-center mt-5">
     <div class="col-md-5">
-        <h2 class="text-center registration-title">Регистрация</h2>
+        <h2 class="text-center registration-title">Sign Up</h2>
     </div>
 </div>
 <div class="row justify-content-center mt-5">
@@ -41,27 +41,27 @@
         <form method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label for="username">Имя пользователя</label>
+                <label for="username">Username</label>
                 <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp">
-                <small id="usernameHelp" class="form-text text-muted">Ваше имя пользователя должно быть уникальным. Мы сообщим вам, если кто-то уже воспользовался им.</small>
+                <small id="usernameHelp" class="form-text text-muted">Your username must be unique. We will inform you if someone has already used it.</small>
             </div>
             <div class="form-group">
-                <label for="password1">Пароль</label>
+                <label for="password1">Password</label>
                 <input type="password" name="password1" class="form-control" id="password1">
             </div>
             <div class="form-group">
-                <label for="password2">Подтверждение пароля</label>
+                <label for="password2">Confirm Password</label>
                 <input type="password" name="password2" class="form-control" id="password2">
             </div>
             <div class="row justify-content-center mt-5">
                 <div class="col-md-5 text-center">
-                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
                 </div>
             </div>
         </form>
         <hr>
         <div class="text-center">
-            Уже есть аккаунт? <a href="{% url 'login_user' %}">Войти в аккаунт</a>
+            Already have an account? <a href="{% url 'login_user' %}">Login to your account</a>
         </div>
     </div>
 </div>

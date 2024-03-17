@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<title>Вход</title>
+<title>Login</title>
 
 <style>
     body {
@@ -27,7 +27,7 @@
 </style>
 <div class="d-flex justify-content-center mt-5">
     <div class="col-md-5">
-        <h2 class="text-center login-title">Вход</h2>
+        <h2 class="text-center login-title">Login</h2>
         <div class="form-wrapper">
             {% if error %}
                 <div class="alert alert-danger" role="alert">
@@ -37,20 +37,20 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="username">Имя пользователя</label>
+                    <label for="username">Username</label>
                     <input type="text" name="username" class="form-control" id="username">
                 </div>
                 <div class="form-group">
-                    <label for="password">Пароль</label>
+                    <label for="password">Password</label>
                     <input type="password" name="password" class="form-control" id="password">
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Войти</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </div>
             </form>
             <hr>
             <div class="text-center">
-                Ещё нет аккаунта? <a href="{% url 'signup_user' %}">Регистрация</a>
+                Don't have an account yet? <a href="{% url 'signup_user' %}">Sign Up</a>
             </div>
         </div>
     </div>
